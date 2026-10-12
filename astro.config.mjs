@@ -9,6 +9,7 @@ export default defineConfig({
   ],
   adapter: netlify({
     imageService: true,
+    edgeMiddleware: true,
   }),
   vite: {
     build: {
