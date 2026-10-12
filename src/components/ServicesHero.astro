@@ -1,0 +1,48 @@
+---
+// Get the local image path - use a relative path
+import ShadowForest from '../assets/ShadowForest.webp?url';
+
+const servicesData = [
+  {
+    title: "Software Engineering Consulting",
+    description: "Helping teams with architecture, agile practices, and code reviews.",
+  },
+  {
+    title: "Software Test Automation",
+    description: "Building robust, maintainable automated test suites for continuous integration.",
+  },
+  {
+    title: "Engineering Mentoring",
+    description: "Guiding up-and-coming engineers and testers in best practices.",
+  },
+];
+---
+
+<section id="services" class="bg-white py-10">
+  <div class="container mx-auto pr-4">
+    <h2 class="text-1xl font-bold mb-6">What I Do</h2>
+    
+    <div class="max-w-[37%] float-right mb-5 md:float-left md:mr-8 ">
+      <img src={ShadowForest} alt="Shadow, the resident dog" class="rounded-lg lg:max-w-[250px] xl:max-w-[300px] lg:mr-8" />
+      <p class="text-gray-400 text-[0.67rem] pt-2">This is shadow, our resident dog and a very very good boy.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-2 pr-8">
+      {servicesData.map((service, index) => (
+        <div key={index} class="pb-6 bg-white">
+          <h3 class="text-sm font-semibold mb-1">{service.title}</h3>
+          <p class="text-gray-600 text-xs">{service.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-5">
+      <a
+        href="/contact"
+        class="inline-block bg-gray-600 text-white px-6 py-3 mr-9 rounded-md hover:bg-gray-400 hover:text-gray-700 transition-colors"
+      >
+        Contact Me
+      </a>
+    </div>
+  </div>
+</section>

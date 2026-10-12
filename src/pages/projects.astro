@@ -1,0 +1,98 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const siteTitle = 'Projects | Astrid (Alex) Lapinski | Software Architecture';
+const siteDescription = 'Architecture and integration implementations with accessible code. Enterprise systems, fintech solutions, AI/ML prototypes. Real-world projects from 15+ years.';
+
+const projects = [
+  {
+    name: 'Collaborative Text Editor',
+    description: 'An Electron-based desktop application that enables real-time collaborative text editing, featuring AI-powered code generation and task execution capabilities.',
+    githubUrl: 'https://github.com/distractdiverge/text-ai-collab-tool',
+    imageUrl: 'https://picsum.photos/id/42/600/400',
+    imagePosition: 'left' as const,
+  },
+  {
+    name: 'Portfolio Website',
+    description: 'This website, showcasing my projects, experience, and skills.',
+    githubUrl: 'https://github.com/distractdiverge/portfolio-website',
+    imageUrl: 'https://picsum.photos/id/119/600/400',
+    imagePosition: 'right' as const,
+  },
+  {
+    name: 'Offline Research Team',
+    description: 'This project showcases an innovative integration of CrewAI with Chainlit, creating a real-time interactive AI development assistant. It leverages CrewAI\'s multi-agent system to handle complex development tasks collaboratively, while Chainlit provides a user-friendly interface for monitoring and interacting with the AI agents. The system features real-time event handling and message streaming, allowing users to track agent activities, task progress, and outputs in a structured, conversational format. This project demonstrates advanced AI orchestration and user experience design, making it an excellent showcase for modern AI-powered development workflows.',
+    githubUrl: 'https://github.com/distractdiverge/poc-crewai',
+    imageUrl: 'https://picsum.photos/id/20/600/400',
+    imagePosition: 'left' as const,
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/fern-colors.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={siteDescription} />
+    <title>{siteTitle}</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rainbowfern.com/projects" />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:image" content="/fern-colors.svg" />
+
+    <script type="application/ld+json">
+      {`{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Rainbow Fern Development - Projects",
+        "url": "https://rainbowfern.com/projects",
+        "description": "${siteDescription}"
+      }`}
+    </script>
+  </head>
+  <body class="bg-white">
+    <div class="grid grid-cols-12 gap-0 justify-stretch min-h-screen">
+      <div class="col-span-12">
+        <Header client:ignore />
+      </div>
+      <div class="hidden md:block md:col-span-1">&nbsp;</div>
+      <div class="col-span-12 md:col-span-10 p-2 lg:p-4">
+        <!-- Hero -->
+        <div
+          class="bg-cover bg-center text-white text-center py-20 px-5 relative"
+          style='background-image: url("https://picsum.photos/id/210/1200/400")'
+        >
+          <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)] z-0"></div>
+          <div class="relative z-10">
+            <h1 class="text-5xl font-bold mb-5">Projects</h1>
+            <p class="text-xl mb-8">
+              A list of my most recent projects, and links to the code and details.
+            </p>
+          </div>
+        </div>
+
+        <div class="py-10 px-5 max-w-6xl mx-auto">
+          {projects.map((project) => (
+            <ProjectCard
+              name={project.name}
+              description={project.description}
+              imageUrl={project.imageUrl}
+              githubUrl={project.githubUrl}
+              imagePosition={project.imagePosition}
+            />
+          ))}
+        </div>
+      </div>
+      <div class="hidden md:block md:col-span-1"></div>
+      <div class="col-span-12 max-width-mx">
+        <Footer client:ignore />
+      </div>
+    </div>
+  </body>
+</html>
