@@ -30,10 +30,9 @@ npm run dev
 
 # Build for production
 npm run build
-
-# Preview production build
-npm run preview
 ```
+
+Note: `astro preview` is not supported by the Netlify adapter. To test the production build locally, serve `dist/` with any static server, e.g. `python3 -m http.server --directory dist`.
 
 ## AI Discoverability
 
@@ -69,8 +68,7 @@ src/
 │   ├── education.astro      → /education
 │   ├── contact.astro        → /contact
 │   ├── llms.txt.ts          → /llms.txt (AI endpoint)
-│   ├── robots.txt.ts        → /robots.txt (SEO)
-│   └── contact-form.ts      → /contact-form (mailto redirect)
+│   └── robots.txt.ts        → /robots.txt (SEO)
 └── assets/            # Images and media
 ```
 

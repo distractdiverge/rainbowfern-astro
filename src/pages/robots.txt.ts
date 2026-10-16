@@ -6,9 +6,8 @@ export function GET(_context: { url: URL }) {
     `User-agent: *
 Allow: /
 Allow: /llms.txt
-Disallow: /contact-form
 
-Sitemap: https://rainbowfern.com/sitemap.xml`,
+Sitemap: https://rainbowfern.com/sitemap-index.xml`,
     {
       status: 200,
       headers: {

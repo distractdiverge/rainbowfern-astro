@@ -1,6 +1,4 @@
 ---
-import { Markdown } from 'astro:content';
-
 export interface Props {
   name: string;
   description: string;
@@ -19,40 +17,29 @@ const {
   imagePosition = 'left',
 } = Astro.props;
 
-const imageOrderClass = imagePosition === 'left'
-  ? 'md:order-2'
-  : 'md:order-1';
+const isImageLeft = imagePosition === 'left';
 
-const detailsOrderClass = imagePosition === 'left'
-  ? 'md:order-2'
-  : 'md:order-1';
+const cardClasses = 'flex flex-col md:flex-row bg-white rounded-lg shadow-lg mb-10 overflow-hidden p-5 items-stretch md:items-center';
+const imageClasses = `order-1 w-full md:w-2/5 flex-none mb-5 md:mb-0 ${isImageLeft ? 'md:order-1 md:mr-5' : 'md:order-2 md:ml-5'}`;
+const detailsClasses = `flex flex-col order-2 md:flex-1 ${isImageLeft ? 'md:order-2' : 'md:order-1'}`;
+const buttonBaseClasses = 'py-2 px-4 rounded-md font-semibold no-underline text-center transition-colors duration-300 ease-in-out';
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-8">
-  <div class={`order-1 ${imageOrderClass}`}>
-    <img src={imageUrl} alt={`${name} project`} class="w-full h-auto block rounded-lg" />
+<div class={cardClasses}>
+  <div class={imageClasses}>
+    <img src={imageUrl} alt={`${name} project`} class="w-full h-auto block rounded" />
   </div>
-  <div class={`order-2 ${detailsOrderClass}`}>
+  <div class={detailsClasses}>
     <h2 class="text-2xl font-semibold text-gray-800 mb-2">{name}</h2>
     <p class="text-base text-gray-700 leading-relaxed mb-5">{description}</p>
     <div class="flex items-center gap-3 mt-auto">
       {detailsUrl ? (
-        <a
-          href={detailsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="py-2 px-4 rounded-md font-semibold text-center bg-black text-white border border-black hover:bg-gray-800 transition-colors duration-300"
-        >
+        <a href={detailsUrl} target="_blank" rel="noopener noreferrer" class={`${buttonBaseClasses} bg-black text-white border border-black hover:bg-gray-800`}>
           Details
         </a>
       ) : null}
       {githubUrl ? (
-        <a
-          href={githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="py-2 px-4 rounded-md font-semibold text-center bg-gray-100 text-gray-800 border border-gray-300 hover:bg-gray-200 transition-colors duration-300"
-        >
+        <a href={githubUrl} target="_blank" rel="noopener noreferrer" class={`${buttonBaseClasses} bg-gray-100 text-gray-800 border border-gray-300 hover:bg-gray-200`}>
           Github Repo
         </a>
       ) : null}
